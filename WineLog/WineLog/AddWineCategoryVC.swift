@@ -26,6 +26,8 @@ final class AddWineCategoryVC: UIViewController {
 extension AddWineCategoryVC {
     @objc func wineButtonTapped(_ sender: UIButton) {
         print(sender.currentTitle)
+        let detailWineVC = DetailWineViewController()
+        self.navigationController?.pushViewController(detailWineVC, animated: true)
     }
 }
 
