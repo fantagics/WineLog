@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30537CC128EBE37F0077CA03 /* SortCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30537CC028EBE37F0077CA03 /* SortCustomCell.swift */; };
+		30537CC328EBEEB90077CA03 /* WineListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30537CC228EBEEB90077CA03 /* WineListCell.swift */; };
 		B6C1694428EAC20300BE77F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1694328EAC20300BE77F8 /* AppDelegate.swift */; };
 		B6C1694828EAC20300BE77F8 /* MyWineListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1694728EAC20300BE77F8 /* MyWineListVC.swift */; };
 		B6C1694D28EAC20400BE77F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6C1694C28EAC20400BE77F8 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30537CC028EBE37F0077CA03 /* SortCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCustomCell.swift; sourceTree = "<group>"; };
+		30537CC228EBEEB90077CA03 /* WineListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineListCell.swift; sourceTree = "<group>"; };
 		B6C1694028EAC20300BE77F8 /* WineLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WineLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6C1694328EAC20300BE77F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6C1694728EAC20300BE77F8 /* MyWineListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWineListVC.swift; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				B6C1694728EAC20300BE77F8 /* MyWineListVC.swift */,
+				30537CC028EBE37F0077CA03 /* SortCustomCell.swift */,
+				30537CC228EBEEB90077CA03 /* WineListCell.swift */,
 			);
 			name = MyWineListVC;
 			sourceTree = "<group>";
@@ -160,8 +166,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6C1695828EAC50900BE77F8 /* AddWineCategoryVC.swift in Sources */,
+				30537CC128EBE37F0077CA03 /* SortCustomCell.swift in Sources */,
 				B6C1696028EAC6CF00BE77F8 /* SingletonY.swift in Sources */,
 				B6C1695E28EAC6C200BE77F8 /* SingletonS.swift in Sources */,
+				30537CC328EBEEB90077CA03 /* WineListCell.swift in Sources */,
 				B6C1695C28EAC64500BE77F8 /* Singleton.swift in Sources */,
 				B6C1694828EAC20300BE77F8 /* MyWineListVC.swift in Sources */,
 				B6C1694428EAC20300BE77F8 /* AppDelegate.swift in Sources */,

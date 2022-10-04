@@ -8,6 +8,8 @@
 import Foundation
 
 class Singleton{
+    
     static let shared: Singleton = Singleton()
     private init(){}
+    
 }
