@@ -28,7 +28,7 @@ class MyWineListVC: UIViewController {
 extension MyWineListVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { //갯수전달
         if collectionView == ListCV {
-            return 5
+            return 10
         }
         return sortsData.count
     }
@@ -139,7 +139,7 @@ extension MyWineListVC {
             ListCV.topAnchor.constraint(equalTo: SortCV.bottomAnchor),
             ListCV.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             ListCV.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            ListCV.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -300)
+            ListCV.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -250)
         ])
     }
 }
