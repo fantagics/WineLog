@@ -57,18 +57,41 @@ class DetailWineInfoView: UIView {
         firstBackView.layer.cornerRadius = 25
         
         wineImage.image = UIImage(named: "wine_example")
-        wineImage.contentMode = .scaleAspectFill
+        wineImage.contentMode = .scaleAspectFit
         wineImage.clipsToBounds = true
         
         [wineNameLabel].forEach {
             $0.text = "KIMCROWFORD"
-            $0.font = UIFont.boldSystemFont(ofSize: 25)
+            $0.font = UIFont.boldSystemFont(ofSize: 20)
+//            $0.numberOfLines = 0
+            $0.adjustsFontSizeToFitWidth = true
+        }
+        
+        [kindOfWineLabel].forEach {
+            $0.font = .systemFont(ofSize: 12)
+            
+            $0.text = "red"
+            $0.backgroundColor = .red
+            $0.textColor = .white
+            $0.layer.cornerRadius = 30
+        }
+        
+        [countryOfOriginLabel].forEach {
+            $0.font = .systemFont(ofSize: 12)
+            $0.textColor = .gray
+            $0.text = "미국"
+            $0.textColor = .gray
+            
         }
         
     }
     
     func setUI() {
-        [wineImage, wineNameLabel].forEach {
+        let labelStackView = UIStackView(arrangedSubviews: [countryOfOriginLabel, kindOfWineLabel])
+        labelStackView.axis = .horizontal
+        labelStackView.distribution = .fillEqually
+        
+        [wineImage, wineNameLabel, labelStackView].forEach {
             firstBackView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -80,16 +103,20 @@ class DetailWineInfoView: UIView {
             firstBackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 30),
             firstBackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 30),
             firstBackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            firstBackView.bottomAnchor.constraint(equalTo: wineImage.bottomAnchor, constant: 30),
+            firstBackView.bottomAnchor.constraint(equalTo: wineNameLabel.bottomAnchor, constant: 30),
             
             wineImage.leadingAnchor.constraint(equalTo: firstBackView.leadingAnchor, constant: 30),
             wineImage.topAnchor.constraint(equalTo: firstBackView.topAnchor, constant: 30),
+            wineImage.trailingAnchor.constraint(equalTo: firstBackView.trailingAnchor, constant: -30),
             wineImage.widthAnchor.constraint(equalToConstant: 100),
-            wineImage.heightAnchor.constraint(equalToConstant: 180),
             
-            wineNameLabel.leadingAnchor.constraint(equalTo: wineImage.trailingAnchor, constant: 30),
-            wineNameLabel.topAnchor.constraint(equalTo: firstBackView.topAnchor, constant: 30),
-            wineNameLabel.trailingAnchor.constraint(equalTo: firstBackView.trailingAnchor, constant: -30),
+//            labelStackView.leadingAnchor.constraint(equalTo: wineImage.trailingAnchor, constant: 30),
+            labelStackView.topAnchor.constraint(equalTo: wineImage.bottomAnchor, constant: 30),
+            labelStackView.centerXAnchor.constraint(equalTo: firstBackView.centerXAnchor),
+//            wineNameLabel.leadingAnchor.constraint(equalTo: wineImage.trailingAnchor, constant: 30),
+            wineNameLabel.topAnchor.constraint(equalTo: labelStackView.bottomAnchor, constant: 10),
+            wineNameLabel.centerXAnchor.constraint(equalTo: firstBackView.centerXAnchor)
+//            wineNameLabel.trailingAnchor.constraint(equalTo: firstBackView.trailingAnchor, constant: -30),
         ])
     }
 }
