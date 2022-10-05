@@ -11,27 +11,53 @@ class WineListCell: UICollectionViewCell {
     
     static let identifier = "CustomListCVCell"
         
-    var label = UILabel()
-
+    var nameLabel = UILabel()
+    var priceLabel = UILabel()
+    var scoreLabel = UILabel()
+    
+    var imageView = UIImageView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
 extension WineListCell {
     func setUI() {
-                
-        contentView.addSubview((label))
-
-        label.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "이미지테스트")
+        
+        [nameLabel, priceLabel,scoreLabel,imageView].forEach {
+            contentView.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        imageView.backgroundColor = .systemMint
+        nameLabel.backgroundColor = .systemOrange
+        priceLabel.backgroundColor = .systemBlue
+        scoreLabel.backgroundColor = .systemYellow
+        
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 5),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -80),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            
+            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -45),
+            
+            priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
+            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -80),
+            priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            
+            scoreLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
+            scoreLabel.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor),
+            scoreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -5),
+            scoreLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
 
         ])
     }

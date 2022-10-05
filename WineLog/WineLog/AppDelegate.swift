@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+       // sleep(1)
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let categoryVC = MyWineListVC()
@@ -20,8 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let wishListVC = AddWineCategoryVC()
         let secondNavVC = UINavigationController(rootViewController: wishListVC)
         let tabBarController = UITabBarController()
-        
-//        firstNavVC.tabBarItem = UITabBarItem(title: "Domino/'s", image: UIImage(named: "domino's"), tag: 0)
+
+        firstNavVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus" ), tag: 0)
+        secondNavVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "list.bullet" ), tag: 0)
+
         tabBarController.viewControllers = [firstNavVC, secondNavVC]
         
         window?.rootViewController = tabBarController

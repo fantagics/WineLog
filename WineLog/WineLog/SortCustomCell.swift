@@ -29,9 +29,9 @@ extension SortCustomCell {
         label.text = "test"
 
         contentView.addSubview((label))
-//        contentView.layer.masksToBounds = true
-//        contentView.layer.cornerRadius = 4
-//
+        layer.masksToBounds = true
+        layer.cornerRadius = 20
+
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
