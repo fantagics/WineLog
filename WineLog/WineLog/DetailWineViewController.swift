@@ -10,6 +10,7 @@ import UIKit
 final class DetailWineViewController: UIViewController {
 //    let detailWineView = DetailWineView()
     let detailWineView = DetailWineInfoView()
+    lazy var rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.app.fill"), style: .plain, target: nil, action: nil)
 
     override func loadView() {
         super.loadView()
@@ -18,6 +19,8 @@ final class DetailWineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.myGreen
     }
 
 }

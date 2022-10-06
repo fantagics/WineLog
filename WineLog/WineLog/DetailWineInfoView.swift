@@ -142,6 +142,7 @@ class DetailWineInfoView: UIView {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         commentOfWineLabel.text = "저녁 때 돌아갈 집이 있다는 것\n힘들 때 마음 속으로 생각 할 사람이 있다는 것\n외로울 때 혼자서 부를 노래 있다는 것"
+        commentOfWineLabel.font = UIFont(name: "GowunBatang-Regular", size: 15)
         commentOfWineLabel.backgroundColor = .lightGray.withAlphaComponent(0.2)
         commentOfWineLabel.numberOfLines = 0
         

@@ -17,8 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let categoryVC = AddWineCategoryVC()
         let firstNavVC = UINavigationController(rootViewController: categoryVC)
+        navigationBarConfiguration(firstNavVC)
         let wishListVC = MyWineListVC()
         let secondNavVC = UINavigationController(rootViewController: wishListVC)
+        navigationBarConfiguration(secondNavVC)
         let tabBarController = UITabBarController()
         
 //        firstNavVC.tabBarItem = UITabBarItem(title: "Domino/'s", image: UIImage(named: "domino's"), tag: 0)
@@ -38,6 +40,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    private func navigationBarConfiguration(_ controller: UINavigationController) {
+        controller.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.darkGray]
+        controller.navigationBar.tintColor = UIColor.darkGray
+        controller.navigationBar.backgroundColor = .white
+        let backbarButton = UIBarButtonItem(title: "fff", style: .plain, target: nil, action: nil)
+        controller.navigationItem.backBarButtonItem = backbarButton
+        
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithTransparentBackground()
+            navBarAppearance.backgroundColor = UIColor.white
+            navBarAppearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.darkGray]
+            controller.navigationBar.standardAppearance = navBarAppearance
+            controller.navigationBar.scrollEdgeAppearance = navBarAppearance
+            controller.navigationBar.compactAppearance = navBarAppearance
+            
+            let backbarButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            controller.navigationItem.backBarButtonItem = backbarButton
+        }
     }
     
 }
