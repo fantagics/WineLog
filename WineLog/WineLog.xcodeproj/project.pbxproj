@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0C62296F28EC6F7000C33D3D /* DetailWineInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C62296E28EC6F7000C33D3D /* DetailWineInfoView.swift */; };
+		0C62297328EDCA0400C33D3D /* UIColor_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C62297228EDCA0400C33D3D /* UIColor_Extension.swift */; };
+		0C62297528EEE97200C33D3D /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C62297428EEE97200C33D3D /* CustomView.swift */; };
 		0CDC070C28EC4AAF001B85E2 /* WineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC070B28EC4AAF001B85E2 /* WineModel.swift */; };
 		0CDC070E28EC502C001B85E2 /* DetailWineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC070D28EC502C001B85E2 /* DetailWineViewController.swift */; };
 		0CDC071028EC524F001B85E2 /* DetailWineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC070F28EC524F001B85E2 /* DetailWineView.swift */; };
@@ -23,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		0C62296E28EC6F7000C33D3D /* DetailWineInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWineInfoView.swift; sourceTree = "<group>"; };
+		0C62297228EDCA0400C33D3D /* UIColor_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Extension.swift; sourceTree = "<group>"; };
+		0C62297428EEE97200C33D3D /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		0CDC070B28EC4AAF001B85E2 /* WineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineModel.swift; sourceTree = "<group>"; };
 		0CDC070D28EC502C001B85E2 /* DetailWineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWineViewController.swift; sourceTree = "<group>"; };
 		0CDC070F28EC524F001B85E2 /* DetailWineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWineView.swift; sourceTree = "<group>"; };
@@ -92,11 +96,13 @@
 		B6C1695A28EAC59700BE77F8 /* AddWineCategoryVC */ = {
 			isa = PBXGroup;
 			children = (
+				0C62297228EDCA0400C33D3D /* UIColor_Extension.swift */,
 				B6C1695728EAC50900BE77F8 /* AddWineCategoryVC.swift */,
 				0CDC070D28EC502C001B85E2 /* DetailWineViewController.swift */,
 				0CDC070B28EC4AAF001B85E2 /* WineModel.swift */,
 				0CDC070F28EC524F001B85E2 /* DetailWineView.swift */,
 				0C62296E28EC6F7000C33D3D /* DetailWineInfoView.swift */,
+				0C62297428EEE97200C33D3D /* CustomView.swift */,
 			);
 			name = AddWineCategoryVC;
 			sourceTree = "<group>";
@@ -178,9 +184,11 @@
 				B6C1695E28EAC6C200BE77F8 /* SingletonS.swift in Sources */,
 				B6C1695C28EAC64500BE77F8 /* Singleton.swift in Sources */,
 				B6C1694828EAC20300BE77F8 /* MyWineListVC.swift in Sources */,
+				0C62297528EEE97200C33D3D /* CustomView.swift in Sources */,
 				0CDC070E28EC502C001B85E2 /* DetailWineViewController.swift in Sources */,
 				0C62296F28EC6F7000C33D3D /* DetailWineInfoView.swift in Sources */,
 				B6C1694428EAC20300BE77F8 /* AppDelegate.swift in Sources */,
+				0C62297328EDCA0400C33D3D /* UIColor_Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,28 +7,25 @@
 
 import UIKit
 
-struct WineModel {
-    // 객관적인 정보
-    // 와인이름
-    let wineName: String
-    // 와인종류
-    let kindOfWine: String
-    // 산지
-    let countryOfOrigin: String
-    // 제조일
-    let yearOfMaking: String
-    // 도수
-    let alcoholOfWine: String
-    
-    // 주관적인 정보
-    // 시음 날짜
-    let dateToDrink: String
-    // 구매처
-    let storeToBuy: String
-    // 가격
-    let priceOfWine: String
-    // 별점 (당도, 산도, 바디)
-    let gradeOfWine: String
-    // 한줄평
-    let reviewOfWine: String
+enum WineType: Codable{
+    case white
+    case red
+    case rose
+}
+
+struct WineInformation: Codable{
+    var id: Int  //수정 및 삭제시 필요
+    var type: WineType
+    var profileData: Data  //이미지 Data
+    var name: String
+    var manufacturingDate: String?  //제조일
+    var manufacturingContry: String?  //제조국
+    var boughtPlace: String?  //구매처
+    var boughtDate: String?
+    var price: Int?  //가격
+    var totalStar: Double  //총평
+    var sugarStar: Double?  //당도
+    var acidityStar: Double?  //산도
+    var bodyStar: Double?  //바디감
+    var comment: String?  //한줄평
 }

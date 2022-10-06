@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         secondNavVC.tabBarItem.image = UIImage(systemName: "list.bullet.circle.fill")
         
         tabBarController.viewControllers = [firstNavVC, secondNavVC]
-        tabBarController.tabBar.tintColor = .red
+        tabBarController.tabBar.tintColor = .myGreen
+        tabBarController.tabBar.unselectedItemTintColor = .myGreen?.withAlphaComponent(0.3)
         
         
         window?.rootViewController = tabBarController
