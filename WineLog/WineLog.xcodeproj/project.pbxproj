@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		302173AA28F00E2B00BFE11B /* AddWineInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302173A928F00E2B00BFE11B /* AddWineInformationVC.swift */; };
 		30537CC128EBE37F0077CA03 /* SortCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30537CC028EBE37F0077CA03 /* SortCustomCell.swift */; };
 		30537CC328EBEEB90077CA03 /* WineListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30537CC228EBEEB90077CA03 /* WineListCell.swift */; };
+		307E2EEA28EFF66600C318B7 /* WineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307E2EE928EFF66600C318B7 /* WineModel.swift */; };
 		B6C1694428EAC20300BE77F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1694328EAC20300BE77F8 /* AppDelegate.swift */; };
 		B6C1694828EAC20300BE77F8 /* MyWineListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1694728EAC20300BE77F8 /* MyWineListVC.swift */; };
 		B6C1694D28EAC20400BE77F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6C1694C28EAC20400BE77F8 /* Assets.xcassets */; };
@@ -20,8 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		302173A928F00E2B00BFE11B /* AddWineInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWineInformationVC.swift; sourceTree = "<group>"; };
 		30537CC028EBE37F0077CA03 /* SortCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCustomCell.swift; sourceTree = "<group>"; };
 		30537CC228EBEEB90077CA03 /* WineListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineListCell.swift; sourceTree = "<group>"; };
+		307E2EE928EFF66600C318B7 /* WineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineModel.swift; sourceTree = "<group>"; };
 		B6C1694028EAC20300BE77F8 /* WineLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WineLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6C1694328EAC20300BE77F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6C1694728EAC20300BE77F8 /* MyWineListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWineListVC.swift; sourceTree = "<group>"; };
@@ -45,6 +49,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		302173AB28F00E4B00BFE11B /* AddWineInformationVC */ = {
+			isa = PBXGroup;
+			children = (
+				302173A928F00E2B00BFE11B /* AddWineInformationVC.swift */,
+			);
+			name = AddWineInformationVC;
+			sourceTree = "<group>";
+		};
+		307E2EE828EFF65100C318B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				307E2EE928EFF66600C318B7 /* WineModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B6C1693728EAC20300BE77F8 = {
 			isa = PBXGroup;
 			children = (
@@ -71,8 +91,10 @@
 				B6C1695B28EAC64500BE77F8 /* Singleton.swift */,
 				B6C1695D28EAC6C200BE77F8 /* SingletonS.swift */,
 				B6C1695F28EAC6CF00BE77F8 /* SingletonY.swift */,
+				307E2EE828EFF65100C318B7 /* Model */,
 				B6C1695928EAC58000BE77F8 /* MyWineListVC */,
 				B6C1695A28EAC59700BE77F8 /* AddWineCategoryVC */,
+				302173AB28F00E4B00BFE11B /* AddWineInformationVC */,
 			);
 			path = WineLog;
 			sourceTree = "<group>";
@@ -165,9 +187,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				307E2EEA28EFF66600C318B7 /* WineModel.swift in Sources */,
 				B6C1695828EAC50900BE77F8 /* AddWineCategoryVC.swift in Sources */,
 				30537CC128EBE37F0077CA03 /* SortCustomCell.swift in Sources */,
 				B6C1696028EAC6CF00BE77F8 /* SingletonY.swift in Sources */,
+				302173AA28F00E2B00BFE11B /* AddWineInformationVC.swift in Sources */,
 				B6C1695E28EAC6C200BE77F8 /* SingletonS.swift in Sources */,
 				30537CC328EBEEB90077CA03 /* WineListCell.swift in Sources */,
 				B6C1695C28EAC64500BE77F8 /* Singleton.swift in Sources */,

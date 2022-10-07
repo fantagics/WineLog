@@ -10,13 +10,10 @@ import UIKit
 class MyWineListVC: UIViewController {
     
     var sortsData = ["와인종류순","가격순","평점순","test4"]
-  //  var sortsColor: [UIColor] = [.systemYellow, .systemOrange,.systemCyan, .systemMint]
-    let flowLayout1 = UICollectionViewFlowLayout()
-//    let flowLayout2 = UICollectionViewFlowLayout()
-    lazy var sortCV = UICollectionView(frame: .zero, collectionViewLayout: flowLayout1)
-//    lazy var ListCV = UICollectionView(frame: .zero, collectionViewLayout: flowLayout2)
-    lazy var listCV = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
     
+    let flowLayout1 = UICollectionViewFlowLayout()
+    lazy var sortCV = UICollectionView(frame: .zero, collectionViewLayout: flowLayout1)
+    lazy var listCV = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,99 +23,160 @@ class MyWineListVC: UIViewController {
         let image = UIImage(named: "logo")
         imageView.image = image
         navigationItem.titleView = imageView
+        
+//        let BarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
+//                                                        target: self, action: #selector(didTapBarButtonItem(_:)))
+//
+//        navigationItem.rightBarButtonItem = BarButtonItem
 
         setUI()
         layoutUI()
+        loadFromJson()
     }
 }
+//extension MyWineListVC {
+//    @objc func didTapBarButtonItem(_ sender: UIBarButtonItem) {
+//
+//    }
+//}
+
 //MARK: UICollectionViewDataSource
 extension MyWineListVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { //갯수전달
         if collectionView == listCV {
-            return 10
+            return Singleton.shared.myWines.count
         }
         return sortsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell { //내용전달
-       guard let cell = sortCV.dequeueReusableCell(withReuseIdentifier: SortCustomCell.identifier, for: indexPath) as? SortCustomCell
-        else { fatalError() }
-        
         if collectionView == listCV {
-          guard let cell2 = listCV.dequeueReusableCell(withReuseIdentifier: WineListCell.identifier, for: indexPath) as? WineListCell
+          guard let cell = listCV.dequeueReusableCell(withReuseIdentifier: WineListCell.identifier, for: indexPath) as? WineListCell
             else { fatalError() }
-            cell2.backgroundColor = .secondaryLabel
+           cell.nameLabel.text = Singleton.shared.myWines[indexPath.item].name
+            switch Singleton.shared.myWines[indexPath.item].type {
+            case .white:
+                cell.typeImageView.image = UIImage(named: "whiteIcon")
+            case .rose:
+                cell.typeImageView.image = UIImage(named: "roseIcon")
+            case .red:
+                cell.typeImageView.image = UIImage(named: "redIcon")
+            
+            }
+            addGesture()
 
-            return cell2
+            return cell
+        }else{
+            guard let cell = sortCV.dequeueReusableCell(withReuseIdentifier: SortCustomCell.identifier, for: indexPath) as? SortCustomCell else { fatalError() }
+            
+            cell.backgroundColor = #colorLiteral(red: 0.9589957595, green: 0.8265138268, blue: 0.5008742213, alpha: 1)
+            
+            cell.label.textColor = #colorLiteral(red: 0.1236173734, green: 0.3619198501, blue: 0.2140165269, alpha: 1)
+            
+            cell.label.text = self.sortsData[indexPath.item]
+            return cell
         }
-
-        cell.backgroundColor = #colorLiteral(red: 0.9589957595, green: 0.8265138268, blue: 0.5008742213, alpha: 1)
-        
-        cell.label.textColor = #colorLiteral(red: 0.1236173734, green: 0.3619198501, blue: 0.2140165269, alpha: 1)
-        
-        cell.label.text = self.sortsData[indexPath.row]
-        return cell
     }
 }
 //MARK: UICollectionViewDelegate
 extension MyWineListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.item == 0 {
-            alart1()
-        }
-          else  if indexPath.item == 1 {
-              alart2()
+        if collectionView == sortCV {
+            switch indexPath.item {
+            case 0:
+                alart1()
+            case 1:
+                alart2()
+            case 2:
+                alart3()
+            default:
+                fatalError()
             }
-             else if indexPath.item == 2 {
-                 alart3()
-                }
-            }
         }
-    
-//MARK: MyWineListVC SetUI()
-extension MyWineListVC {
-    func setUI(){
-//        view.backgroundColor = #colorLiteral(red: 0.1236173734, green: 0.3619198501, blue: 0.2140165269, alpha: 1)
-//        view.backgroundColor = #colorLiteral(red: 0.9589957595, green: 0.8265138268, blue: 0.5008742213, alpha: 1)
-        //#colorLiteral(
-        
-        
-        
-        flowLayout1.itemSize = CGSize(width: view.frame.width / 4, height: view.frame.height / 15)
-        flowLayout1.minimumInteritemSpacing = 5  //아이템간의 가로거리
-        flowLayout1.minimumLineSpacing = 10 //아이템간의 세로거리
-        flowLayout1.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10) //테두리 거리
-        flowLayout1.scrollDirection = .horizontal
-        
-        sortCV.dataSource = self
-        sortCV.delegate = self
-        listCV.dataSource = self
-        sortCV.delegate = self
-        
-        sortCV.register(SortCustomCell.self, forCellWithReuseIdentifier: SortCustomCell.identifier)
-        listCV.register(WineListCell.self, forCellWithReuseIdentifier: WineListCell.identifier)
-        
-    }
-    //MARK: MyWineListVC layout()
-    func layoutUI(){
-        [sortCV, listCV].forEach{
-            view.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-        
-        NSLayoutConstraint.activate([
-            sortCV.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 10),
-            sortCV.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            sortCV.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            sortCV.bottomAnchor.constraint(equalTo: view.topAnchor,constant: 150),
+        else {
             
-            listCV.topAnchor.constraint(equalTo: sortCV.bottomAnchor),
-            listCV.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            listCV.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            listCV.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -150)
-        ])
+        }
+    }
+    
+    
+    func addGesture() {
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
+        listCV.addGestureRecognizer(gesture)
+
+    }
+    
+    @objc
+    func didLongPress(_ sender: UILongPressGestureRecognizer) {
+        switch sender.state {
+        case.began: //사용자가 처음 누를때
+            print("began")
+        case.changed://누르고 이동할때
+            print("changed")
+        case.ended://손 땟을때
+            print("ended")
+        case.cancelled: // 중간에 전화오거나 알람 등 취소될때
+            print("cancelled")
+        default:
+            break
+        }
     }
 }
+
+extension MyWineListVC {
+    func loadFromJson(){
+        let jsonDecoder = JSONDecoder()
+        do{
+            let data = try Data(contentsOf: Singleton.shared.getFilePath(), options: .mappedIfSafe)
+            let received = try jsonDecoder.decode([WineInformation].self, from: data)
+            Singleton.shared.myWines = received
+        }catch{
+            print(error.localizedDescription)
+        }
+    }
+}
+
+//MARK: MyWineListVC SetUI()
+    extension MyWineListVC {
+        func setUI(){
+            
+            flowLayout1.itemSize = CGSize(width: view.frame.width / 4, height: view.frame.height / 15)
+            flowLayout1.minimumInteritemSpacing = 5  //아이템간의 가로거리
+            flowLayout1.minimumLineSpacing = 10 //아이템간의 세로거리
+            flowLayout1.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10) //테두리 거리
+            flowLayout1.scrollDirection = .horizontal
+            
+            sortCV.dataSource = self
+            sortCV.delegate = self
+            listCV.dataSource = self
+            sortCV.delegate = self
+            
+            
+            sortCV.register(SortCustomCell.self, forCellWithReuseIdentifier: SortCustomCell.identifier)
+            listCV.register(WineListCell.self, forCellWithReuseIdentifier: WineListCell.identifier)
+            
+        }
+        //MARK: MyWineListVC layout()
+        func layoutUI(){
+            [sortCV, listCV ].forEach{
+                view.addSubview($0)
+                $0.translatesAutoresizingMaskIntoConstraints = false
+            }
+
+            NSLayoutConstraint.activate([
+                sortCV.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 10),
+                sortCV.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                sortCV.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                sortCV.bottomAnchor.constraint(equalTo: view.topAnchor,constant: 150),
+                
+                listCV.topAnchor.constraint(equalTo: sortCV.bottomAnchor),
+                listCV.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                listCV.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                listCV.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -150),
+                
+                
+            ])
+        }
+    }
 extension MyWineListVC {
     func alart1() {
         let wineType = UIAlertController(title: "와인종류별", message: nil, preferredStyle: .actionSheet)

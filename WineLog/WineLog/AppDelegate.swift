@@ -16,10 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        // sleep(1)
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let categoryVC = MyWineListVC()
-        let firstNavVC = UINavigationController(rootViewController: categoryVC)
-        let wishListVC = AddWineCategoryVC()
-        let secondNavVC = UINavigationController(rootViewController: wishListVC)
+        let firstNavVC = UINavigationController(rootViewController: AddWineCategoryVC())
+        let secondNavVC = UINavigationController(rootViewController: MyWineListVC())
         let tabBarController = UITabBarController()
 
         firstNavVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus" ), tag: 0)

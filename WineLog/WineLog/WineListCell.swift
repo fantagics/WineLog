@@ -14,7 +14,8 @@ class WineListCell: UICollectionViewCell {
     var nameLabel = UILabel()
     var priceLabel = UILabel()
     var scoreLabel = UILabel()
-    
+    var typeImageView = UIImageView()
+
     var imageView = UIImageView()
     
     override init(frame: CGRect) {
@@ -28,8 +29,8 @@ class WineListCell: UICollectionViewCell {
 extension WineListCell {
     func setUI() {
         imageView.image = UIImage(named: "이미지테스트")
-        
-        [nameLabel, priceLabel,scoreLabel,imageView].forEach {
+
+        [nameLabel, priceLabel,scoreLabel,imageView,typeImageView].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -57,7 +58,12 @@ extension WineListCell {
             scoreLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
             scoreLabel.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor),
             scoreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -5),
-            scoreLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
+            scoreLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            
+            typeImageView.topAnchor.constraint(equalTo: imageView.topAnchor),
+            typeImageView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            typeImageView.heightAnchor.constraint(equalToConstant: 30),
+            typeImageView.widthAnchor.constraint(equalTo: typeImageView.heightAnchor)
 
         ])
     }
