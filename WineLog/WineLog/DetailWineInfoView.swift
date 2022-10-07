@@ -34,7 +34,7 @@ class DetailWineInfoView: UIView {
     // 가격
     let priceOfWineLabel = CustomLabelView(title: "가격", info: "33,000원")
     // 한줄평
-    let commentOfWineLabel = UILabel()
+    let commentOfWineLabel = CustomLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -163,7 +163,7 @@ class DetailWineInfoView: UIView {
             commentOfWineLabel.topAnchor.constraint(equalTo: starStackView.bottomAnchor, constant: 30),
             commentOfWineLabel.leadingAnchor.constraint(equalTo: secondBackView.leadingAnchor),
             commentOfWineLabel.trailingAnchor.constraint(equalTo: secondBackView.trailingAnchor),
-            commentOfWineLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -130)
+//            commentOfWineLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -130)
         ])
     }
 }

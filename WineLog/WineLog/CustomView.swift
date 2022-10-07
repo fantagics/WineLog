@@ -112,4 +112,7 @@ class CustomGradeView: UIView {
             
         }
     }
+    
+    //들어오는 Double 값에 따라 별을 색칠해줘야 함
+    
 }

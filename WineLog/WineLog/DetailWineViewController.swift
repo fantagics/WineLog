@@ -7,7 +7,9 @@
 
 import UIKit
 
+
 final class DetailWineViewController: UIViewController {
+    let fileManager = FileManager.default
 //    let detailWineView = DetailWineView()
     let detailWineView = DetailWineInfoView()
     lazy var rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.app.fill"), style: .plain, target: nil, action: nil)
@@ -44,7 +46,7 @@ extension DetailWineViewController {
         
     }
     
-    //사용된 Struct : struct Sample: Codable
+//    사용된 Struct : struct Sample: Codable
 //    
 //    func saveToJson(){
 //        var isDirectory: ObjCBool = true

@@ -24,8 +24,8 @@ struct WineInformation: Codable{
     var boughtDate: String?
     var price: Int?  //가격
     var totalStar: Double  //총평
-    var sugarStar: Double?  //당도
-    var acidityStar: Double?  //산도
-    var bodyStar: Double?  //바디감
+    var sugarStar: Double? //당도
+    var acidityStar: Double  //산도
+    var bodyStar: Double  //바디감
     var comment: String?  //한줄평
 }
