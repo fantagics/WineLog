@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
+<<<<<<< HEAD
         let categoryVC = AddWineCategoryVC()
         let firstNavVC = UINavigationController(rootViewController: categoryVC)
         navigationBarConfiguration(firstNavVC)
@@ -30,6 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         secondNavVC.tabBarItem.title = "Second"
         secondNavVC.tabBarItem.image = UIImage(systemName: "list.bullet.circle.fill")
         
+=======
+        let firstNavVC = UINavigationController(rootViewController: AddWineCategoryVC())
+        let secondNavVC = UINavigationController(rootViewController: MyWineListVC())
+        let tabBarController = UITabBarController()
+        
+        firstNavVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus"), tag: 0)
+        secondNavVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "list.bullet"), tag: 1)
+>>>>>>> 995dd743c252ec13e9e2e7d84e70795000d6e74a
         tabBarController.viewControllers = [firstNavVC, secondNavVC]
         tabBarController.tabBar.tintColor = .myGreen
         tabBarController.tabBar.unselectedItemTintColor = .myGreen?.withAlphaComponent(0.3)
