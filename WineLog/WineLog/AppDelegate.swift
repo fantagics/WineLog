@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         firstNavVC.tabBarItem.imageInsets = UIEdgeInsets(top: 110, left: 100, bottom: 110, right: 100)
         secondNavVC.tabBarItem.title = "Second"
         secondNavVC.tabBarItem.image = UIImage(systemName: "list.bullet.circle.fill")
-        
+
         tabBarController.viewControllers = [firstNavVC, secondNavVC]
         tabBarController.tabBar.tintColor = .myGreen
         tabBarController.tabBar.unselectedItemTintColor = .myGreen?.withAlphaComponent(0.3)
