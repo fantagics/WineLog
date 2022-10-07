@@ -2,10 +2,12 @@
 //  WineModel.swift
 //  WineLog
 //
+
 //  Created by 순진이 on 2022/10/04.
 //
 
 import UIKit
+
 
 enum WineType: Codable{
     case white

@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class AddWineCategoryVC: UIViewController {
     
     let redWineButton = UIButton()
@@ -17,6 +18,7 @@ final class AddWineCategoryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+    }
 }
 
 //MARK: - Button Action
@@ -81,5 +83,4 @@ extension AddWineCategoryVC {
         ])
     }
 }
-
 
