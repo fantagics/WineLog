@@ -2,10 +2,10 @@
 //  WineModel.swift
 //  WineLog
 //
-//  Created by 이태형 on 2022/10/05.
+//  Created by 순진이 on 2022/10/04.
 //
 
-import Foundation
+import UIKit
 
 enum WineType: Codable{
     case white
@@ -21,6 +21,7 @@ struct WineInformation: Codable{
     var manufacturingDate: String?  //제조일
     var manufacturingContry: String?  //제조국
     var boughtPlace: String?  //구매처
+    var boughtDate: String?
     var price: Int?  //가격
     var totalStar: Double  //총평
     var sugarStar: Double  //당도
