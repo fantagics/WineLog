@@ -13,7 +13,9 @@ class Singleton{
     private init(){}
     
     var myWines = [WineInformation]()
-        
+    var wineType = 0
+    var wineTypeValue: [WineType] = [.white, .red, .white]
+    
         func getDirectoryPath()-> URL{
             return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         }
@@ -27,12 +29,7 @@ class Singleton{
             let filePath = folderPath.appendingPathComponent("test.json")
             return filePath
         }
-    
-//    var myWines: [WineInformation] = [WineInformation(id: 1, type: .red, name: "redabc"),
-//                                      WineInformation(id: 2, type: .rose, name: "roseabc"),
-//                                       WineInformation(id: 3, type: .white, name: "whiteabc"),
-//
-// ]
+
     
 }
 

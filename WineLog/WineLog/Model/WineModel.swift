@@ -16,7 +16,7 @@ enum WineType: Codable{
 struct WineInformation: Codable{
     var id: Int  //수정 및 삭제시 필요
     var type: WineType
-   var profileData: Data  //이미지 Data
+    var profileData: Data  //이미지 Data
     var name: String
     var manufacturingDate: String?  //제조일
     var manufacturingContry: String?  //제조국

@@ -34,10 +34,13 @@ extension WineListCell {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        imageView.backgroundColor = .systemMint
-        nameLabel.backgroundColor = .systemOrange
-        priceLabel.backgroundColor = .systemBlue
-        scoreLabel.backgroundColor = .systemYellow
+        priceLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.font = .boldSystemFont(ofSize: 15)
+        nameLabel.adjustsFontSizeToFitWidth = true
+      
+        nameLabel.backgroundColor = .systemYellow
+        priceLabel.backgroundColor = .systemOrange
+        scoreLabel.backgroundColor = .systemBlue
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 5),
@@ -50,13 +53,13 @@ extension WineListCell {
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -45),
             
-            priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -80),
-            priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 5),
+            priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -28),
             
-            scoreLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-            scoreLabel.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor),
+            scoreLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 5),
+            scoreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             scoreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -5),
             scoreLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             

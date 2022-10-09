@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		302173AA28F00E2B00BFE11B /* AddWineInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302173A928F00E2B00BFE11B /* AddWineInformationVC.swift */; };
+		302173AF28F0208400BFE11B /* ETInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302173AE28F0208400BFE11B /* ETInt.swift */; };
 		30537CC128EBE37F0077CA03 /* SortCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30537CC028EBE37F0077CA03 /* SortCustomCell.swift */; };
 		30537CC328EBEEB90077CA03 /* WineListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30537CC228EBEEB90077CA03 /* WineListCell.swift */; };
 		307E2EEA28EFF66600C318B7 /* WineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307E2EE928EFF66600C318B7 /* WineModel.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		302173A928F00E2B00BFE11B /* AddWineInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWineInformationVC.swift; sourceTree = "<group>"; };
+		302173AE28F0208400BFE11B /* ETInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETInt.swift; sourceTree = "<group>"; };
 		30537CC028EBE37F0077CA03 /* SortCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCustomCell.swift; sourceTree = "<group>"; };
 		30537CC228EBEEB90077CA03 /* WineListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineListCell.swift; sourceTree = "<group>"; };
 		307E2EE928EFF66600C318B7 /* WineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineModel.swift; sourceTree = "<group>"; };
@@ -55,6 +57,14 @@
 				302173A928F00E2B00BFE11B /* AddWineInformationVC.swift */,
 			);
 			name = AddWineInformationVC;
+			sourceTree = "<group>";
+		};
+		302173AD28F0206D00BFE11B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				302173AE28F0208400BFE11B /* ETInt.swift */,
+			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		307E2EE828EFF65100C318B7 /* Model */ = {
@@ -94,6 +104,7 @@
 				307E2EE828EFF65100C318B7 /* Model */,
 				B6C1695928EAC58000BE77F8 /* MyWineListVC */,
 				B6C1695A28EAC59700BE77F8 /* AddWineCategoryVC */,
+				302173AD28F0206D00BFE11B /* Extension */,
 				302173AB28F00E4B00BFE11B /* AddWineInformationVC */,
 			);
 			path = WineLog;
@@ -191,6 +202,7 @@
 				B6C1695828EAC50900BE77F8 /* AddWineCategoryVC.swift in Sources */,
 				30537CC128EBE37F0077CA03 /* SortCustomCell.swift in Sources */,
 				B6C1696028EAC6CF00BE77F8 /* SingletonY.swift in Sources */,
+				302173AF28F0208400BFE11B /* ETInt.swift in Sources */,
 				302173AA28F00E2B00BFE11B /* AddWineInformationVC.swift in Sources */,
 				B6C1695E28EAC6C200BE77F8 /* SingletonS.swift in Sources */,
 				30537CC328EBEEB90077CA03 /* WineListCell.swift in Sources */,
