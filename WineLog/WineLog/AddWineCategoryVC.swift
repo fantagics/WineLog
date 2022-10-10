@@ -16,13 +16,11 @@ class AddWineCategoryVC: UIViewController {
 
         setUI()
     }
-    
 }
-
 extension AddWineCategoryVC{
     @objc func didTapButton(_ sender: UIButton){
         let nextVC = AddWineInformationVC()
-        nextVC.wineType = .white
+        nextVC.wineType = .red
         nextVC.isAddWine = true
         navigationController?.pushViewController(nextVC, animated: true)
     }

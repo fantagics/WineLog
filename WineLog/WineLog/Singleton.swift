@@ -14,7 +14,7 @@ class Singleton{
     
     var myWines = [WineInformation]()
     var wineType = 0
-    var wineTypeValue: [WineType] = [.white, .red, .white]
+    var wineTypeValue: [WineType] = [.white, .red, .rose]
     
         func getDirectoryPath()-> URL{
             return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

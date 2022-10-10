@@ -9,12 +9,13 @@ import UIKit
 
 class MyWineListVC: UIViewController {
     
-    var sortsData = ["와인종류순","가격순","평점순","초기화"]
+    var sortsData = ["와인종류순","별점순","가격순","초기화"]
     
     let flowLayout1 = UICollectionViewFlowLayout()
     lazy var sortCV = UICollectionView(frame: .zero, collectionViewLayout: flowLayout1)
     lazy var listCV = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
-    var filteredWineList = [WineInformation]()
+    var sortedWineList = [WineInformation]()
+    var outputWineList = [WineInformation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +28,13 @@ class MyWineListVC: UIViewController {
         setUI()
         layoutUI()
         loadFromJson()
-        filteredWineList = wineListFilter(Singleton.shared.myWines)
+        sortedWineList = Singleton.shared.myWines.sorted(by: { $0.price ?? .max < $1.price ?? .max }) //오름차순
+        outputWineList = wineListFilter(Singleton.shared.myWines) //와인종류순
+//        for i in outputWineList{
+//            print(i.price)
+//        }
+        self.listCV.reloadData()
 
-  
     }
 }
 
@@ -37,7 +42,7 @@ class MyWineListVC: UIViewController {
 extension MyWineListVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { //갯수전달
         if collectionView == listCV {
-            return Singleton.shared.myWines.count
+            return outputWineList.count
         }
         return sortsData.count
     }
@@ -47,33 +52,28 @@ extension MyWineListVC: UICollectionViewDataSource {
           guard let cell = listCV.dequeueReusableCell(withReuseIdentifier: WineListCell.identifier, for: indexPath) as? WineListCell
             else { fatalError() }
             
-            if let priceValue: Int = Singleton.shared.myWines[indexPath.item].price {
-                cell.priceLabel.text = "가격:" + String(priceValue.toDecimalFormat()) + "원"
+            if let priceValue: Int = outputWineList[indexPath.item].price {
+                cell.priceLabel.text = "가격: " + String(priceValue.toDecimalFormat()) + "원"
                 
             } else {
                 cell.priceLabel.text = ""
             }
             
-            cell.nameLabel.text = Singleton.shared.myWines[indexPath.item].name
-            cell.scoreLabel.text = "총평: \(String(Singleton.shared.myWines[indexPath.item].totalStar))"
-            cell.imageView.image = UIImage(data: Singleton.shared.myWines[indexPath.item].profileData)
-            switch Singleton.shared.myWines[indexPath.item].type {
+            cell.nameLabel.text = outputWineList[indexPath.item].name
+            cell.scoreLabel.text = "별점: \(String(outputWineList[indexPath.item].totalStar))"
+            cell.imageView.image = UIImage(data: outputWineList[indexPath.item].profileData)
+            switch outputWineList[indexPath.item].type {
             case .white:
                 cell.typeImageView.image = UIImage(named: "whiteIcon")
             case .rose:
                 cell.typeImageView.image = UIImage(named: "roseIcon")
             case .red:
                 cell.typeImageView.image = UIImage(named: "redIcon")
-            
             }
             return cell
         }else{
             guard let cell = sortCV.dequeueReusableCell(withReuseIdentifier: SortCustomCell.identifier, for: indexPath) as? SortCustomCell else { fatalError() }
-            
-         //   cell.backgroundColor = #colorLiteral(red: 0.9589957595, green: 0.8265138268, blue: 0.5008742213, alpha: 1)
-            cell.label.textColor = #colorLiteral(red: 0.1236173734, green: 0.3619198501, blue: 0.2140165269, alpha: 1)
-            cell.layer.borderColor =  #colorLiteral(red: 0.9589957595, green: 0.8265138268, blue: 0.5008742213, alpha: 1)
-            cell.contentView.layer.borderWidth = 2
+                    
             cell.label.text = self.sortsData[indexPath.item]
             return cell
         }
@@ -91,7 +91,7 @@ extension MyWineListVC: UICollectionViewDelegate {
                 alart2()
             case 2:
                 alart3()
-            case 4:
+            case 3:
                 alart4()
             default:
                 fatalError()
@@ -116,7 +116,7 @@ extension MyWineListVC {
     }
 }
 
-//MARK: MyWineListVC SetUI()
+//MARK: - MyWineListVC SetUI()
     extension MyWineListVC {
         func setUI(){
             
@@ -151,11 +151,10 @@ extension MyWineListVC {
                 listCV.topAnchor.constraint(equalTo: sortCV.bottomAnchor,constant: 10),
                 listCV.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 listCV.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                listCV.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -150),
-                
-                
+                listCV.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -100),
             ])
         }
+        
         func wineListFilter(_ wineList: [WineInformation]) ->[WineInformation] {
             var result = [WineInformation]()
             for idx in 0 ..< Singleton.shared.myWines.count {
@@ -170,6 +169,11 @@ extension MyWineListVC {
                         typeBool = false
                     }
                 }
+                
+                
+                if typeBool {
+                    result.append(Singleton.shared.myWines[idx])
+                }
             }
             return result
         }
@@ -178,54 +182,91 @@ extension MyWineListVC {
 extension MyWineListVC {
     func alart1() {
         let wineType = UIAlertController(title: "와인종류별", message: nil, preferredStyle: .actionSheet)
-        let wineType1 = UIAlertAction(title: "레드와인", style: .default) { (UIAlertAction) in
-            Singleton.shared.wineType = 2
-            
+        let wineType0 = UIAlertAction(title: "전체선택", style: .default) { (UIAlertAction) in
+            Singleton.shared.wineType = 0
+            self.outputWineList = self.wineListFilter(Singleton.shared.myWines)
+            self.listCV.reloadData()
+
         }
-        let wineType2 = UIAlertAction(title: "화이트와인", style: .default) { (UIAlertAction) in
-            Singleton.shared.wineType = 1 }
-        let wineType3 = UIAlertAction(title: "로제와인", style: .default) { (UIAlertAction) in
-            Singleton.shared.wineType = 3 }
-        let wineTypeCancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        wineType.addAction(wineTypeCancelAction)
-        wineType.addAction(wineType1)
-        wineType.addAction(wineType2)
-        wineType.addAction(wineType3)
-        self.present(wineType, animated: true, completion: nil)
-    }
-    func alart2() {
-        var sortedWines = Singleton.shared.myWines.sorted(by: { $0.price ?? .max < $1.price ?? .max })
-        
-        let wineType = UIAlertController(title: "가격순", message: nil, preferredStyle: .actionSheet)
-        let wineType1 = UIAlertAction(title: "가격 오름차순", style: .default) { (UIAlertAction) in
-            let wines = Singleton.shared.myWines
-            sortedWines = wines
+        let wineType1 = UIAlertAction(title: "RED", style: .default) { (UIAlertAction) in
+            Singleton.shared.wineType = 2
+            self.outputWineList = self.wineListFilter(Singleton.shared.myWines)
             self.listCV.reloadData()
             
         }
-        let wineType2 = UIAlertAction(title: "가격 내림차순", style: .default, handler: nil)
+        let wineType2 = UIAlertAction(title: "WHITE", style: .default) { (UIAlertAction) in
+            Singleton.shared.wineType = 1
+            self.outputWineList = self.wineListFilter(Singleton.shared.myWines)
+
+            self.listCV.reloadData()
+
+        }
+        
+        let wineType3 = UIAlertAction(title: "ROSE", style: .default) { (UIAlertAction) in
+            Singleton.shared.wineType = 3
+            self.outputWineList = self.wineListFilter(Singleton.shared.myWines)
+
+            self.listCV.reloadData()
+
+        }
         let wineTypeCancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        wineType.addAction(wineTypeCancelAction)
-        wineType.addAction(wineType1)
-        wineType.addAction(wineType2)
+        
+        [wineTypeCancelAction,wineType0,wineType1,wineType2,wineType3,].forEach {
+            wineType.addAction($0)
+                }
+        
+        wineType.view.tintColor = #colorLiteral(red: 0.1236173734, green: 0.3619198501, blue: 0.2140165269, alpha: 1)
         
         self.present(wineType, animated: true, completion: nil)
     }
-func alart3() {
-    let wineType = UIAlertController(title: "평점순", message: nil, preferredStyle: .actionSheet)
-    let wineType1 = UIAlertAction(title: "평점 오름차순", style: .default, handler: nil)
-    let wineType2 = UIAlertAction(title: "평점 내림차순", style: .default, handler: nil)
+    func alart2() {
+        
+        let wineType = UIAlertController(title: "별점", message: nil, preferredStyle: .actionSheet)
+        let wineType0 = UIAlertAction(title: "전체", style: .default, handler: nil)
+        let wineType1 = UIAlertAction(title: "별 4 ~ 5", style: .default, handler: nil)
+        let wineType2 = UIAlertAction(title: "별 2 ~ 3", style: .default, handler: nil)
+        let wineType3 = UIAlertAction(title: "별 0 ~ 1", style: .default, handler: nil)
+
+        let wineTypeCancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        wineType.view.tintColor = #colorLiteral(red: 0.1236173734, green: 0.3619198501, blue: 0.2140165269, alpha: 1)
+        [wineTypeCancelAction,wineType0,wineType1,wineType2,wineType3].forEach {
+            wineType.addAction($0)
+        }
+     
+
+        self.present(wineType, animated: true, completion: nil)
+    }
     
+func alart3() {
+    sortedWineList = Singleton.shared.myWines.sorted(by: { $0.price ?? .max < $1.price ?? .max }) //오름차순
+    dump(sortedWineList)
+    outputWineList = wineListFilter(sortedWineList) //와인종류순
+    for i in outputWineList{
+        print(i.price)
+    }
+    listCV.reloadData()
+    
+    let wineType = UIAlertController(title: "가격", message: nil, preferredStyle: .actionSheet)
+    let wineType1 = UIAlertAction(title: "오름차순", style: .default) { (UIAlertAction) in
+     //   let wines = Singleton.shared.myWines
+        self.sortedWineList = self.outputWineList
+        self.listCV.reloadData()
+    }
+    
+    let wineType2 = UIAlertAction(title: "내림차순", style: .default, handler: nil)
     let wineTypeCancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     wineType.addAction(wineTypeCancelAction)
     wineType.addAction(wineType1)
     wineType.addAction(wineType2)
-    
+    wineType.view.tintColor = #colorLiteral(red: 0.1236173734, green: 0.3619198501, blue: 0.2140165269, alpha: 1)
+
     self.present(wineType, animated: true, completion: nil)
+ 
 }
+    
     func alart4() {
-        
+        print("초기화")
     }
 }
 
@@ -245,7 +286,7 @@ extension MyWineListVC {
             
             //Section
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
             
             return section
         }
